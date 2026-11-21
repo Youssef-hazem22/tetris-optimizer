@@ -60,9 +60,6 @@ of crashing or giving a strange answer. For example:
 - pieces are not separated by an empty line
 - there are too many pieces
 
-I tested this with 18 different kinds of broken files and with automatically
-generated random input. None of them make the program crash.
-
 ## What this project shows
 
 | Skill | How it shows up here |
@@ -70,7 +67,6 @@ generated random input. None of them make the program crash.
 | Problem solving | Turning a puzzle into a step-by-step method a computer can follow |
 | Algorithms | A search that tries options, backs up when stuck, and skips hopeless paths |
 | Performance | Finding the slow part by measuring, then redesigning it (from freezing at 12 pieces to seconds at 20+) |
-| Testing | Automated tests that cover about 96% of the code, plus random-input testing |
 | Reliability | Every kind of bad input is handled, with a clear result |
 | Clean code | Small single-purpose functions, one place that handles all errors |
 
