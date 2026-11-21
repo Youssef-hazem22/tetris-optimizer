@@ -1,6 +1,6 @@
 package main
 
-func canPlace(board [][]rune, t Tetromino, row, col int) bool {
+func canPlace(board [][]byte, t Tetromino, row, col int) bool {
 	n := len(board)
 	for _, p := range t.Cells {
 		r, c := row+p.Row, col+p.Col
@@ -15,19 +15,19 @@ func canPlace(board [][]rune, t Tetromino, row, col int) bool {
 	return true
 }
 
-func place(board [][]rune, t Tetromino, row, col int) {
+func place(board [][]byte, t Tetromino, row, col int) {
 	for _, p := range t.Cells {
-		board[row+p.Row][col+p.Col] = t.Letter
+		board[row+p.Row][col+p.Col] = byte(t.Letter)
 	}
 }
 
-func remove(board [][]rune, t Tetromino, row, col int) {
+func remove(board [][]byte, t Tetromino, row, col int) {
 	for _, p := range t.Cells {
 		board[row+p.Row][col+p.Col] = '.'
 	}
 }
 
-func solve(board [][]rune, pieces []Tetromino, i int) bool {
+func solve(board [][]byte, pieces []Tetromino, i int) bool {
 	if i == len(pieces) {
 		return true
 	}

@@ -16,8 +16,8 @@ type Tetromino struct {
 
 func main() {
 	if len(os.Args) != 2 {
-		fmt.Println("ERROR")
-		return
+		fmt.Println(" len ERROR ")
+		os.Exit(1)
 	}
 
 	content, err := readFile(os.Args[1])
@@ -32,19 +32,17 @@ func main() {
 		return
 	}
 
-	if err := validateBlocks(blocks); err != nil {
+	if err = validateBlocks(blocks); err != nil {
 		fmt.Println("ERROR")
 		return
 	}
 
 	pieces := parseTetrominoes(blocks)
 
-	if err := validateShapes(pieces); err != nil {
+	if pieces, err = validateShapes(pieces); err != nil {
 		fmt.Println("ERROR")
 		return
 	}
-
-	pieces = normalizeAll(pieces)
 	pieces = assignLetters(pieces)
 	n := minBoardSize(len(pieces))
 	for {

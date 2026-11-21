@@ -10,10 +10,10 @@ func minBoardSize(pieceCount int) int {
 	return int(math.Ceil(math.Sqrt(float64(cells))))
 }
 
-func newBoard(n int) [][]rune {
-	board := make([][]rune, n)
+func newBoard(n int) [][]byte {
+	board := make([][]byte, n)
 	for r := range board {
-		board[r] = make([]rune, n)
+		board[r] = make([]byte, n)
 		for c := range board[r] {
 			board[r][c] = '.'
 		}
@@ -21,11 +21,11 @@ func newBoard(n int) [][]rune {
 	return board
 }
 
-func boardString(board [][]rune) string {
+func boardString(board [][]byte) string {
 	var sb strings.Builder
 	for _, row := range board {
 		for _, cell := range row {
-			sb.WriteRune(cell)
+			sb.WriteByte(cell)
 		}
 		sb.WriteByte('\n')
 	}
