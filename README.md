@@ -80,7 +80,6 @@ You need [Go](https://go.dev/dl/) installed. Then, in this folder:
 
 ```bash
 go run . sample.txt     # solve the example file
-go test ./...           # run the automated tests
 ```
 
 `sample.txt` is the example with eight pieces. A piece is drawn with `#`
@@ -108,8 +107,7 @@ line:
 ## For developers
 
 - **Language:** Go 1.18 or newer, standard library only.
-- **Files:** `main.go` (program), `main_test.go` (tests), `stress.sh` (runs the
-  real program on 18 broken inputs), `sample.txt` (example).
+- **Files:** `main.go` (program), `sample.txt` (example).
 - **Approach:** validate the input, move every piece to the top-left corner,
   then search for the smallest square. A fast cell-by-cell search (`packer`)
   finds the smallest size, and a piece-by-piece backtracking search (`solver`)
@@ -119,5 +117,3 @@ line:
 - **Errors:** every failure is a named error (`ErrBadFormat`, `ErrBadShape`, ...)
   handled in one place. `main()` only prints `ERROR` and exits with status 1.
   Set `TETRIS_DEBUG=1` to see the reason on standard error.
-- **Tests:** table-driven unit tests, a fuzz test, benchmarks and a CPU profile
-  workflow. See `go test -cover ./...`.
