@@ -44,7 +44,7 @@ func main() {
 		return
 	}
 	pieces = assignLetters(pieces)
-	n := minBoardSize(len(pieces))
+	n := minBoardSize(pieces)
 	for {
 		board := newBoard(n)
 		if solve(board, pieces, 0) {

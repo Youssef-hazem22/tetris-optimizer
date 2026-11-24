@@ -1,13 +1,20 @@
 package main
 
-import (
-	"math"
-	"strings"
-)
+import "strings"
 
-func minBoardSize(pieceCount int) int {
-	cells := 4 * pieceCount
-	return int(math.Ceil(math.Sqrt(float64(cells))))
+func minBoardSize(pieces []Tetromino) int {
+	maxcols := 0
+	for _, piece := range pieces {
+		for _, cell := range piece.Cells {
+			if cell.Col > maxcols {
+				maxcols = cell.Col
+			}
+		}
+	}
+	if maxcols < 1 {
+		return 0
+	}
+	return maxcols
 }
 
 func newBoard(n int) [][]byte {
