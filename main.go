@@ -26,28 +26,21 @@ func main() {
 		return
 	}
 
-	blocks, err := splitBlocks(content)
+	pieces, err := splitBlocks(content)
 	if err != nil {
 		fmt.Println("ERROR")
 		return
 	}
-
-	if err = validateBlocks(blocks); err != nil {
+	if pieces, err = Allmatching(pieces); err != nil {
 		fmt.Println("ERROR")
 		return
 	}
-
-	pieces := parseTetrominoes(blocks)
-
-	if pieces, err = validateShapes(pieces); err != nil {
-		fmt.Println("ERROR")
-		return
-	}
-	pieces = assignLetters(pieces)
 	n := minBoardSize(pieces)
 	for {
 		board := newBoard(n)
-		if solve(board, pieces, 0) {
+		used := make([]bool, len(pieces))
+		waste := n*n - 4*len(pieces)
+		if solve(board, pieces, used, 0, len(pieces), waste) {
 			fmt.Print(boardString(board))
 			return
 		}
